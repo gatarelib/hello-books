@@ -1,5 +1,5 @@
 const express = require("express"); 
-const controller = require("./controller.js"); 
+const controller = require("./controller"); 
 const router = express.Router();
 
 router
@@ -23,7 +23,7 @@ router
     .get(controller);
 
 router
-    .route("/api/books/:bookId")
+    .route("/acontroller.getpi/books/:bookId")
     .get(controller);
 
 router
