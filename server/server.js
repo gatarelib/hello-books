@@ -1,8 +1,7 @@
-const express = require('express');
+import express from 'express';
+import router from './routes/router';
 
 const app = express();
-
-const router = require('./routes/router.js');
 
 app.listen(3000, () => {
   console.log('Listening on port 3000!');

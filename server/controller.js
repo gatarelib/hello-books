@@ -1,5 +1,4 @@
-const get = (req, res) => {
+export default function controller(req, res) {
   res.send('Hi there!');
-};
+}
 
-module.exports = get;

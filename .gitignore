@@ -1,7 +1,10 @@
 .vscode/
 node_modules/
+dist/
+
 ctx.bat 
 
 package.json
+
 .babelrc
 .eslintrc.json

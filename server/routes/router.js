@@ -1,6 +1,5 @@
-const express = require('express');
-
-const controller = require('../controller');
+import express from 'express';
+import controller from '../controller';
 
 const router = express.Router();
 
@@ -33,4 +32,4 @@ router
   .get(controller);
 
 
-module.exports = router;
+export default router;
