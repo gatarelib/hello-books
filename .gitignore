@@ -4,4 +4,4 @@ ctx.bat
 
 package.json
 .babelrc
-.eslint.json
+.eslintrc.json
