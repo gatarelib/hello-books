@@ -1,8 +1,8 @@
 {
-  "name": "HelloBooks", 
-  "description": "An elegant material design app that implements a simple digital library for keeping, borrowing managing all kinds of literature.",
-  "repository": "https://github.com/AppCypher/HelloBooks", 
-  "logo": "https://github.com/AppCypher/HelloBooks/blob/heroku-deploy/template/img/favicon.png", 
-  "keywords": ["node", "express", "static"], 
-  "image": "heroku/nodejs"
+  "name": "HelloBooks",
+  "description": "a really cool app",
+  "version": "0.1.0",
+  "engines": {
+    "node": "6.11.1"
+  }
 }
