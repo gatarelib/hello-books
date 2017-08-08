@@ -10,7 +10,6 @@
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/material-kit.css">
-    <!--<link rel="stylesheet" type="text/css" href="css/material-dashboard.css">-->
     <link rel="stylesheet" type="text/css" href="css/custom.css">
 </head>
 
@@ -20,18 +19,29 @@
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#simple-navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="#"><strong>HELLO BOOKS</strong></a>
             </div>
 
             <div class="navbar-collapse collapse" id="simple-navbar" aria-expanded="false" style="height: 0px;">
                 <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <form class="navbar-form navbar-right" role="search">
+                            <div class="form-group  is-empty">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <span class="material-input"></span>
+                            <span class="material-input"></span></div>
+                            <span type="submit" class="btn btn-white btn-round btn-just-icon">
+                                <i class="material-icons">search</i><div class="ripple-container"></div>
+                            </span>
+                        </form>
+                    </li>
                     <li class="active">
-                        <a href="#">
+                        <a href="material.html">
                                 <i class="material-icons">explore</i>
                                 Discover
                             </a>
@@ -43,13 +53,13 @@
                             </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="settings.html">
                                 <i class="material-icons">settings</i>
                                 Settings
                             </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="admin.html">
                                 <i class="material-icons">verified_user</i>
                                 Admin
                             </a>
@@ -83,16 +93,16 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
+
         <!-- LIBRARY -->
         <div class="main main-raised">
             <div class="section section-basic container">
                 <!-- ROW 1 -->
                 <div class="row">
-                    <div class="col-sm-4 col-md-4 container" >
-                        <a href="login.html">
+                    <div class="col-sm-4 col-md-4 container">
+                        <a href="" data-toggle="modal" data-target="#myModal" >
                             <div class="card container" href="login.html">
                                 <div class="card-image">
                                     <img src="img/cover/aso_ebi_chronicles.png" class="fill">
@@ -226,6 +236,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- BORROW CONTENT -->
+                
             </div>
         </div>
     </div>
