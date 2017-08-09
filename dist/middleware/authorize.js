@@ -18,9 +18,21 @@ var User = _models2.default.User,
     Notification = _models2.default.Notification,
     Sequelize = _models2.default.Sequelize;
 
-// Check if admin status of current user
+/**
+ * Check if admin status of current user
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 
 function checkIfAdmin(res, req, next) {}
 
-// Check if current user is logged in
+/**
+ * Check if current user is logged in
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 function checkIfLoggedIn(res, req, next) {}

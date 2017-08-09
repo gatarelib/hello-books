@@ -1,7 +1,7 @@
 import express from 'express';
 import { devTest, createUser, loginUser, createAdminUser } from '../controllers/user';
 import { getBooks, addBook, getUserBooks, modifyBook, borrowBook, returnBook, createNotif, getUserNotifs } from '../controllers/book';
-import { checkBookExists, checkUserExists, checkUserReturnedBook, checkUserBorrowedBook } from '../middleware/validate';
+import { checkBookExists, checkUserExists, checkUserNameExists, checkUserReturnedBook, checkUserBorrowedBook } from '../middleware/validate';
 import { checkIfAdmin, checkIfLoggedIn } from '../middleware/authorize';
 
 const router = express.Router();
@@ -19,7 +19,7 @@ router
 // Handle request for logging in to the application
 router
   .route('/api/v1/users/signin')
-  .post(loginUser);
+  .post(checkUserNameExists, loginUser);
 
 // Handle admin request for adding a new book to the database
 router

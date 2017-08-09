@@ -2,7 +2,13 @@ import db from '../models';
 
 const { Book, User, BorrowDetail } = db;
 
-// Check if book exists
+/**
+ * Check if book exists
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 export function checkBookExists(req, res, next) {
   Book
     .findOne({
@@ -18,7 +24,13 @@ export function checkBookExists(req, res, next) {
     });
 }
 
-// Check if a user borrowed a particular book
+/**
+ * Check if a user borrowed a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 export function checkUserExists(req, res, next) {
   User
     .findOne({
@@ -33,7 +45,35 @@ export function checkUserExists(req, res, next) {
     });
 }
 
-// Check if a user borrowed a particular book
+
+/**
+ * Check if a user borrowed a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
+export function checkUserNameExists(req, res, next) {
+  User
+    .findOne({
+      where: {
+        username: req.body.username,
+      },
+    })
+    .then((user) => {
+      if (!user) {
+        res.status(404).send('User does not exist!');
+      } else next();
+    });
+}
+
+/**
+ * Check if a user borrowed a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 export function checkUserBorrowedBook(req, res, next) {
   BorrowDetail
     .findOne({
@@ -48,7 +88,13 @@ export function checkUserBorrowedBook(req, res, next) {
     });
 }
 
-// Check if a user returned a particular book
+/**
+ * Check if a user returned a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 export function checkUserReturnedBook(req, res, next) {
   BorrowDetail
     .findOne({

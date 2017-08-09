@@ -7,7 +7,7 @@ const { User } = db;
  * Handles request for user sign-up
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} registered user details
  */
 export function createUser(req, res) {
   // Hash password to save in the database
@@ -32,7 +32,7 @@ export function createUser(req, res) {
  * Handles request for sign-in with basic authentication
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{string} log-in status 
  */
 export function loginUser(req, res) {
   return User
@@ -56,7 +56,7 @@ export function loginUser(req, res) {
  * Handles request for admin user sign-up
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} registered admin user details
  */
 export function createAdminUser(req, res) {
   // Hash password to save in the database

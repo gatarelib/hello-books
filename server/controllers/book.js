@@ -6,7 +6,7 @@ const { User, Book, BorrowDetail, Notification, Sequelize } = db;
  * Return an array of all books in the database
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} all books
  */
 export function getBooks(req, res) {
   return Book
@@ -23,7 +23,7 @@ export function getBooks(req, res) {
  * Add book details specified in request to the database
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} added book
  */
 export function addBook(req, res) {
   return Book
@@ -47,7 +47,7 @@ export function addBook(req, res) {
  * Get the list of a user's borrowed but unreturned books
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} user borrowed books
  */
 export function getUserBooks(req, res) {
   return BorrowDetail
@@ -69,7 +69,7 @@ export function getUserBooks(req, res) {
  * Modify book information already in database
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{string} update status
  */
 export function modifyBook(req, res) {
   return Book
@@ -96,7 +96,7 @@ export function modifyBook(req, res) {
  * Gives user access to a book if available
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} borrowdetail
  */
 export function borrowBook(req, res) {
   return BorrowDetail
@@ -117,7 +117,7 @@ export function borrowBook(req, res) {
  * Marks a book as returned in a user borrow history
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{string} borrow status 
  */
 export function returnBook(req, res) {
   return BorrowDetail

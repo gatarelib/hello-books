@@ -24,7 +24,7 @@ var User = _models2.default.User;
  * Handles request for user sign-up
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} registered user details
  */
 
 function createUser(req, res) {
@@ -47,7 +47,7 @@ function createUser(req, res) {
  * Handles request for sign-in with basic authentication
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{string} log-in status 
  */
 function loginUser(req, res) {
   return User.findOne({
@@ -68,7 +68,7 @@ function loginUser(req, res) {
  * Handles request for admin user sign-up
  * @param{Object} req - api request
  * @param{Object} res - route response
- * @return{undefined}
+ * @return{json} registered admin user details
  */
 function createAdminUser(req, res) {
   // Hash password to save in the database

@@ -5,6 +5,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.checkBookExists = checkBookExists;
 exports.checkUserExists = checkUserExists;
+exports.checkUserNameExists = checkUserNameExists;
 exports.checkUserBorrowedBook = checkUserBorrowedBook;
 exports.checkUserReturnedBook = checkUserReturnedBook;
 
@@ -18,7 +19,13 @@ var Book = _models2.default.Book,
     User = _models2.default.User,
     BorrowDetail = _models2.default.BorrowDetail;
 
-// Check if book exists
+/**
+ * Check if book exists
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 
 function checkBookExists(req, res, next) {
   Book.findOne({
@@ -33,7 +40,13 @@ function checkBookExists(req, res, next) {
   });
 }
 
-// Check if a user borrowed a particular book
+/**
+ * Check if a user borrowed a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 function checkUserExists(req, res, next) {
   User.findOne({
     where: {
@@ -46,7 +59,32 @@ function checkUserExists(req, res, next) {
   });
 }
 
-// Check if a user borrowed a particular book
+/**
+ * Check if a user borrowed a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
+function checkUserNameExists(req, res, next) {
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  }).then(function (user) {
+    if (!user) {
+      res.status(404).send('User does not exist!');
+    } else next();
+  });
+}
+
+/**
+ * Check if a user borrowed a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 function checkUserBorrowedBook(req, res, next) {
   BorrowDetail.findOne({
     where: {
@@ -59,7 +97,13 @@ function checkUserBorrowedBook(req, res, next) {
   });
 }
 
-// Check if a user returned a particular book
+/**
+ * Check if a user returned a particular book
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
 function checkUserReturnedBook(req, res, next) {
   BorrowDetail.findOne({
     where: {

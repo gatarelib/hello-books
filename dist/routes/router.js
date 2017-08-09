@@ -27,7 +27,7 @@ router.route('/').get(_user.devTest);
 router.route('/api/v1/users/signup').post(_user.createUser);
 
 // Handle request for logging in to the application
-router.route('/api/v1/users/signin').post(_user.loginUser);
+router.route('/api/v1/users/signin').post(_validate.checkUserNameExists, _user.loginUser);
 
 // Handle admin request for adding a new book to the database
 router.route('/api/v1/books').post(_book.addBook);
