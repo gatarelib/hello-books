@@ -1,5 +1,6 @@
 'use strict';
 
+// export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
     return queryInterface.createTable('BorrowHistories', {
@@ -32,6 +33,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      user_Id: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'User',
+          key: 'id',
+          as: 'user_id'
+        }
       }
     });
   },

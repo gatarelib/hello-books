@@ -1,15 +1,21 @@
+// export default (sequelize, DataTypes) => {
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define('Category', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    bookid: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     classMethods: {
       associate: (models) => {
-        // associations can be defined here
+        // Associate Category with Book
         Category.belongsTo(models.Book, {
-          foreignKey: 'book_id',
+          foreignKey: 'bookid',
+          onDelete: 'CASCADE',
         });
       },
     },

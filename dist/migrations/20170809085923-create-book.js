@@ -3,28 +3,36 @@
 // export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
-    return queryInterface.createTable('notifications', {
+    return queryInterface.createTable('Books', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      sender: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      reciever: {
+      isbn: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      message: {
+      year: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      author: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      sent_date: {
-        type: Sequelize.DATE,
+      description: {
+        type: Sequelize.STRING,
         allowNull: false
+      },
+      count: {
+        allowNull: false,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -33,19 +41,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      user_Id: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'User',
-          key: 'id',
-          as: 'user_id'
-        }
       }
     });
   },
   down: function down(queryInterface) {
-    return queryInterface.dropTable('notifications');
+    return queryInterface.dropTable('Books');
   }
 };

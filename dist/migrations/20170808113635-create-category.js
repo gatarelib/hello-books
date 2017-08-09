@@ -1,5 +1,6 @@
 'use strict';
 
+// export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
     return queryInterface.createTable('Categories', {
@@ -20,6 +21,15 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      user_Id: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Book',
+          key: 'id',
+          as: 'book_id'
+        }
       }
     });
   },

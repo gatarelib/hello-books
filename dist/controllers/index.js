@@ -1,7 +1,12 @@
 'use strict';
 
-var user = require('./user');
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-module.exports = {
-  user: user
+var _user = require('./user');
+
+exports.default = {
+  createUserController: _user.createUserController,
+  getUserController: _user.getUserController
 };

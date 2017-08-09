@@ -1,5 +1,6 @@
 'use strict';
 
+// export default (sequelize, DataTypes) => {
 module.exports = function (sequelize, DataTypes) {
   var BorrowHistory = sequelize.define('BorrowHistory', {
     book_title: {

@@ -1,5 +1,6 @@
 'use strict';
 
+// export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
     return queryInterface.createTable('Users', {

@@ -3,7 +3,7 @@
 // export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
-    return queryInterface.createTable('notifications', {
+    return queryInterface.createTable('Notifications', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -22,7 +22,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      sent_date: {
+      sentdate: {
         type: Sequelize.DATE,
         allowNull: false
       },
@@ -34,13 +34,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      user_Id: {
+      userid: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
-          model: 'User',
+          model: 'Users',
           key: 'id',
-          as: 'user_id'
+          as: 'userid'
         }
       }
     });

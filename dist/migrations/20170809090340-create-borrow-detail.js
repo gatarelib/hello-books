@@ -1,8 +1,9 @@
 'use strict';
 
+// export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
-    return queryInterface.createTable('BorrowHistories', {
+    return queryInterface.createTable('BorrowDetails', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,15 +11,17 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       booktitle: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       borrowdate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        allowNull: false
       },
       collectiondate: {
         type: Sequelize.DATE
       },
-      returneddate: {
+      returndate: {
         type: Sequelize.DATE
       },
       createdAt: {
@@ -28,10 +31,19 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      userid: {
+        type: Sequelize.INTEGER,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Users',
+          key: 'id',
+          as: 'userid'
+        }
       }
     });
   },
-  down: function down(queryInterface, Sequelize) {
-    return queryInterface.dropTable('BorrowHistories');
+  down: function down(queryInterface) {
+    return queryInterface.dropTable('BorrowDetails');
   }
 };

@@ -1,3 +1,4 @@
+// export default {
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('Categories', {
     id: {
@@ -17,6 +18,15 @@ module.exports = {
     updatedAt: {
       allowNull: false,
       type: Sequelize.DATE,
+    },
+    userid: {
+      type: Sequelize.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'Books',
+        key: 'id',
+        as: 'bookid',
+      },
     },
   }),
   down: queryInterface => queryInterface.dropTable('Categories'),

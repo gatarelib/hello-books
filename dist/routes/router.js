@@ -8,40 +8,52 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _controller = require('../controllers/controller');
+var _user = require('../controllers/user');
+
+var _book = require('../controllers/book');
+
+var _validate = require('../middleware/validate');
+
+var _authorize = require('../middleware/authorize');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
 
-// TEST //
-var userController = require('../controllers').user;
+// Homepage route is also a signup route
+router.route('').post(_user.createUser);
 
-router.route('/api/test/user').post(userController.create);
-// TEST //
+// Handle request for signing up on the platform 
+router.route('/api/v1/users/signup').post(_user.createUser);
 
+// Handle request for logging in to the application
+router.route('/api/v1/users/signin').post(_user.loginUser);
 
-router.route('').get(_controller.homeController);
+// Handle admin request for adding a new book to the database
+router.route('/api/v1/books').post(_book.addBook);
 
-router.route('/api/v1/user/signup').post(_controller.devController);
+// Handle admin request for modifying a book in the db
+router.route('/api/v1/books/:bookId').put(_validate.checkBookExists, _book.modifyBook);
 
-router.route('/api/v1/users/signin').post(_controller.devController);
+// Handle request for getting all books in the database
+router.route('/api/v1/books').get(_book.getBooks);
 
-router.route('/api/v1/books').post(_controller.devController);
+// Handle request for getting a user's borrow history
+router.route('/api/v1/users/:userId/books').get(_validate.checkUserExists, _book.getUserBooks);
 
-router.route('/api/v1/books/:bookId').put(_controller.devController);
+// Handle request for allowing a user to borrow a book
+router.route('/api/v1/users/:userId/books').post(_validate.checkUserExists, _validate.checkUserBorrowedBook, _book.borrowBook);
 
-router.route('/api/v1/books').get(_controller.devController);
+// Handle request for allowing user to return a book
+router.route('/api/v1/users/:userId/books').put(_validate.checkUserExists, _validate.checkUserReturnedBook, _book.returnBook);
 
-// Match query string of pattern /\?returned=(true|false)/
-function matchQueryString(req, res, next) {
-  return next(req.query.returned ? null : 'false');
-}
+// Secret route for admin user login
+router.route('/api/v1/users/OX8b79Ie89Fd6sh5ysg1JR93d/signup').post(_user.createAdminUser);
 
-router.route('/api/v1/users/:userId/books').get(matchQueryString, _controller.queryController);
+// For test purpose only
+router.route('/api/v1/users/notif').post(_book.createNotif);
 
-router.route('/api/v1/users/:userId/books').post(_controller.devController);
-
-router.route('/api/v1/users/:userId/books').put(_controller.devController);
+// For test purpose only 
+router.route('/api/v1/users/:userId/notif').get(_book.getUserNotifs);
 
 exports.default = router;
