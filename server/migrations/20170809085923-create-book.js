@@ -1,3 +1,4 @@
+// export default {
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('Books', {
     id: {
@@ -25,6 +26,10 @@ module.exports = {
     description: {
       type: Sequelize.STRING,
       allowNull: false,
+    },
+    count: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
     },
     createdAt: {
       allowNull: false,

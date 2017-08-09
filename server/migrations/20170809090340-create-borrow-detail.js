@@ -1,26 +1,25 @@
+// export default {
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('BorrowHistories', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('BorrowDetails', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    book_title: {
+    booktitle: {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    borrowed_date: {
+    borrowdate: {
       type: Sequelize.DATE,
       allowNull: false,
     },
-    collection_date: {
+    collectiondate: {
       type: Sequelize.DATE,
-      allowNull: false,
     },
-    returned_date: {
+    returndate: {
       type: Sequelize.DATE,
-      allowNull: false,
     },
     createdAt: {
       allowNull: false,
@@ -30,6 +29,15 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE,
     },
+    userid: {
+      type: Sequelize.INTEGER,
+      onDelete: 'CASCADE',
+      references: {
+        model: 'Users',
+        key: 'id',
+        as: 'userid',
+      },
+    },
   }),
-  down: queryInterface => queryInterface.dropTable('BorrowHistories'),
+  down: queryInterface => queryInterface.dropTable('BorrowDetails'),
 };

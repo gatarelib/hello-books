@@ -1,28 +1,38 @@
 'use strict';
 
+// export default {
 module.exports = {
   up: function up(queryInterface, Sequelize) {
-    return queryInterface.createTable('notifications', {
+    return queryInterface.createTable('Users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      sender: {
+      username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+      },
+      fullname: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
+      },
+      password: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      reciever: {
-        type: Sequelize.STRING,
-        allowNull: false
+      isadmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
-      message: {
+      membership: {
         type: Sequelize.STRING,
-        allowNull: false
-      },
-      sent_date: {
-        type: Sequelize.DATE,
         allowNull: false
       },
       createdAt: {
@@ -36,6 +46,6 @@ module.exports = {
     });
   },
   down: function down(queryInterface) {
-    return queryInterface.dropTable('notifications');
+    return queryInterface.dropTable('Users');
   }
 };

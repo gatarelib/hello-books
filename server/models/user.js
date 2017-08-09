@@ -1,3 +1,4 @@
+// export default (sequelize, DataTypes) => {
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     username: {
@@ -17,21 +18,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    is_admin: {
+    isadmin: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
+    },
+    membership: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   }, {
     classMethods: {
       associate: (models) => {
-        // associations can be defined here
-        User.hasMany(models.BorrowHistory, {
-          foreignKey: 'user_id',
-          as: 'borrow_history',
+        // Associate User with BorrowDetail
+        User.hasMany(models.BorrowDetail, {
+          foreignKey: 'userid',
         });
+        // Associate User with Notification
         User.hasMany(models.Notification, {
-          foreignKey: 'user_id',
-          as: 'notification',
+          foreignKey: 'userid',
         });
       },
     },

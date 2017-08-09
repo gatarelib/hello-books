@@ -16,8 +16,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// 
+// Set router for path 
 app.use('/', router);
+
+// Set Ui folder
 app.use(express.static(path.join(__dirname, '/template')));
 
 // Open port and listen from it 

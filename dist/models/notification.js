@@ -1,5 +1,6 @@
 'use strict';
 
+// export default (sequelize, DataTypes) => {
 module.exports = function (sequelize, DataTypes) {
   var Notification = sequelize.define('Notification', {
     sender: {
@@ -14,16 +15,20 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    sent_date: {
+    sentdate: {
       type: DataTypes.DATE,
       allowNull: false
+    },
+    userid: {
+      type: DataTypes.INTEGER
     }
   }, {
     classMethods: {
       associate: function associate(models) {
-        // associations can be defined here
+        // Associate Notification with User
         Notification.belongsTo(models.User, {
-          foreignKey: 'user_id'
+          foreignKey: 'userid',
+          onDelete: 'CASCADE'
         });
       }
     }

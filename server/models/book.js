@@ -1,3 +1,4 @@
+// export default (sequelize, DataTypes) => {
 module.exports = (sequelize, DataTypes) => {
   const Book = sequelize.define('Book', {
     title: {
@@ -20,13 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    count: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, {
     classMethods: {
       associate: (models) => {
-        // associations can be defined here
+        // Associate Book with Category
         Book.hasMany(models.Category, {
-          foreignKey: 'book_id',
-          as: 'category',
+          foreignKey: 'bookid',
         });
       },
     },
