@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = _express2.default.Router();
 
 // Homepage route is also a signup route
-router.route('').post(_user.createUser);
+router.route('/').post(_user.devTest);
 
 // Handle request for signing up on the platform 
 router.route('/api/v1/users/signup').post(_user.createUser);

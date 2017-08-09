@@ -77,3 +77,8 @@ export function createAdminUser(req, res) {
       `${err.errors[0].message}!`,
     ));
 }
+
+// For test purpose only 
+export function devTest(req, res) {
+  res.status(200).send('Hello there!');
+}

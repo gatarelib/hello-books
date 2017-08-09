@@ -1,5 +1,5 @@
 import express from 'express';
-import { createUser, loginUser, createAdminUser } from '../controllers/user';
+import { devTest, createUser, loginUser, createAdminUser } from '../controllers/user';
 import { getBooks, addBook, getUserBooks, modifyBook, borrowBook, returnBook, createNotif, getUserNotifs } from '../controllers/book';
 import { checkBookExists, checkUserExists, checkUserReturnedBook, checkUserBorrowedBook } from '../middleware/validate';
 import { checkIfAdmin, checkIfLoggedIn } from '../middleware/authorize';
@@ -8,8 +8,8 @@ const router = express.Router();
 
 // Homepage route is also a signup route
 router
-  .route('')
-  .post(createUser);
+  .route('/')
+  .post(devTest);
 
 // Handle request for signing up on the platform 
 router

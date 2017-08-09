@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.createUser = createUser;
 exports.loginUser = loginUser;
 exports.createAdminUser = createAdminUser;
+exports.devTest = devTest;
 
 var _bcrypt = require('bcrypt');
 
@@ -84,4 +85,9 @@ function createAdminUser(req, res) {
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });
+}
+
+// For test purpose only 
+function devTest(req, res) {
+  res.status(200).send('Hello there!');
 }
