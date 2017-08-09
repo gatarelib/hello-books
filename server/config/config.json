@@ -16,11 +16,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "roomB211",
-    "database": "hello-books",
-    "host": "127.0.0.1",
-    "port": "5080",
+    "use_env_variable": "DATABASE_URL",
     "dialect": "postgres"
   }
 }
