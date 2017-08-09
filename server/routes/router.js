@@ -9,7 +9,7 @@ const router = express.Router();
 // Homepage route is also a signup route
 router
   .route('/')
-  .post(devTest);
+  .get(devTest);
 
 // Handle request for signing up on the platform 
 router
