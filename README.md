@@ -1,7 +1,7 @@
 # Hello Books
 ![stability wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg "stability wip")
 ![hound ci](https://camo.githubusercontent.com/23ee7a697b291798079e258bbc25434c4fac4f8b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f50726f7465637465645f62792d486f756e642d6138373364312e737667 "hound ci")
-![travis ci](https://img.shields.io/snap-ci/ThoughtWorksStudios/eb_deployer/master.svg "travis ci")
+![travis ci](https://travis-ci.org/AppCypher/HelloBooks.svg?branch=develop "travis ci")
 
 ![hellobooks screenshot](https://github.com/AppCypher/HelloBooks/blob/api-test/template/img/screenshot.png "HelloBooks Discover Page")
 
