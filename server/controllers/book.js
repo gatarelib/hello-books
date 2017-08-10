@@ -1,6 +1,6 @@
 import db from '../models';
 
-const { User, Book, BorrowDetail, Notification, Sequelize } = db;
+const { Book, BorrowDetail } = db;
 
 /**
  * Return an array of all books in the database
@@ -27,42 +27,79 @@ export function getBooks(req, res) {
  */
 export function addBook(req, res) {
   return Book
-    .create({
-      title: req.body.title,
-      isbn: req.body.isbn,
-      year: req.body.year,
-      author: req.body.author,
-      description: req.body.description,
-      count: req.body.count,
+    .findOne({
+      where: {
+        title: req.body.title,
+        isbn: req.body.isbn,
+      },
+    }).then((book) => {
+      // Update book if book exists
+      if (book) {
+        book.update({
+          count: book.count + 1,
+        });
+        res.status(200).send('Book updated!');
+      } else {
+        // Otherwise create a new book 
+        Book
+          .create({
+            title: req.body.title,
+            isbn: req.body.isbn,
+            year: req.body.year,
+            author: req.body.author,
+            description: req.body.description,
+            count: req.body.count,
+          })
+          .then(newBook => res.status(200).send(
+            newBook,
+          ));
+      }
     })
-    .then(book => res.status(200).send(
-      book,
-    ))
     .catch(err => res.status(400).send(
       `${err.errors[0].message}!`,
     ));
 }
 
 /**
- * Get the list of a user's borrowed but unreturned books
+ * Get the list of a user's borrowed books
+ * And depending on the query passed, it may show returned books only
  * @param{Object} req - api request
  * @param{Object} res - route response
  * @return{json} user borrowed books
  */
 export function getUserBooks(req, res) {
-  return BorrowDetail
-    .findAll({
-      where: {
-        userid: req.params.userId,
-        returndate: null,
-      },
-    })
-    .then(books => res.status(200).send(
-      books,
-    ))
-    .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
-    ));
+  if (req.query.returned === 'false') {
+    return BorrowDetail
+      .findAll({
+        where: {
+          userid: req.params.userId,
+          returndate: null,
+        },
+      })
+      .then(books => res.status(200).send(
+        books,
+      ))
+      .catch(err => res.status(400).send(
+        `${err.errors[0].message}!`,
+      ));
+  } else if (req.query.returned === 'false') {
+    return BorrowDetail
+      .findAll({
+        where: {
+          userid: req.params.userId,
+          $ne: {
+            returndate: null,
+          },
+        },
+      })
+      .then(books => res.status(200).send(
+        books,
+      ))
+      .catch(err => res.status(400).send(
+        `${err.errors[0].message}!`,
+      ));
+  }
+  return res.status(403).send('Query missing or wrong: use /path?returned=true');
 }
 
 /**
@@ -99,6 +136,18 @@ export function modifyBook(req, res) {
  * @return{json} borrowdetail
  */
 export function borrowBook(req, res) {
+  Book
+    .findOne({
+      where: {
+        title: req.body.booktitle,
+      },
+    }).then((book) => {
+      if (book) {
+        book.update({
+          count: book.count - 1,
+        });
+      }
+    });
   return BorrowDetail
     .create({
       booktitle: req.body.booktitle,
@@ -120,6 +169,18 @@ export function borrowBook(req, res) {
  * @return{string} borrow status 
  */
 export function returnBook(req, res) {
+  Book
+    .findOne({
+      where: {
+        title: req.body.booktitle,
+      },
+    }).then((book) => {
+      if (book) {
+        book.update({
+          count: book.count + 1,
+        });
+      }
+    });
   return BorrowDetail
     .update({
       returndate: Date.now(),
@@ -130,41 +191,9 @@ export function returnBook(req, res) {
         userid: req.params.userId,
       },
     })
-    .then(borrowdetail => res.status(200).send(borrowdetail[0] === 2 ? 'Book returned successfully!' : 'Book not returned!'))
+    .then(borrowdetail => res.status(200).send(borrowdetail[0] > 0 ? 'Book returned successfully!' : 'Book not returned!'))
     .catch(err => res.status(400).send(
       `${err.errors[0].message}!`,
     ));
 }
 
-// For test purpose only
-export function createNotif(req, res) {
-  return Notification
-    .create({
-      sender: req.body.sender,
-      reciever: req.body.reciever,
-      message: req.body.message,
-      sentdate: Date.now(),
-      userid: req.body.userid,
-    })
-    .then(notif => res.status(200).send(
-      notif,
-    ))
-    .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
-    ));
-}
-
-// For test purpose only
-export function getUserNotifs(req, res) {
-  const idParam = req.params.userId;
-  return Notification
-    .findAll({
-      where: { userid: idParam },
-    })
-    .then(notifs => res.status(200).send(
-      notifs,
-    ))
-    .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
-    ));
-}

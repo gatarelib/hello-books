@@ -6,11 +6,14 @@ Object.defineProperty(exports, "__esModule", {
 exports.createUser = createUser;
 exports.loginUser = loginUser;
 exports.createAdminUser = createAdminUser;
-exports.devTest = devTest;
 
 var _bcrypt = require('bcrypt');
 
 var _bcrypt2 = _interopRequireDefault(_bcrypt);
+
+var _jsonwebtoken = require('jsonwebtoken');
+
+var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
 
 var _models = require('../models');
 
@@ -53,11 +56,13 @@ function loginUser(req, res) {
   return User.findOne({
     where: { username: req.body.username }
   }).then(function (user) {
+    // Create a session token with 10-minute session
+    var token = _jsonwebtoken2.default.sign({ username: user.username, isadmin: user.isadmin }, process.env.SECRET_KEY, { expiresIn: '10m' });
     _bcrypt2.default.compare(req.body.password, user.password).then(function (check) {
       if (check) {
-        res.status(200).send('Successfully Logged in');
+        res.status(200).send('Successfully Logged in! \nLogin token: ' + token);
       }
-      res.status(401).send('Wrong password or username');
+      res.status(401).send('Wrong password or username!');
     });
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
@@ -85,9 +90,4 @@ function createAdminUser(req, res) {
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });
-}
-
-// For test purpose only 
-function devTest(req, res) {
-  res.status(200).send('Hello there!');
 }

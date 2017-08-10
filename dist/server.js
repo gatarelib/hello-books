@@ -25,7 +25,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Set up the express app
 var app = (0, _express2.default)();
 
+// Port to listen from should be determined by evironment and defaults to 3000
 var port = process.env.PORT || 3000;
+
+// Key for authenticating user sessions
+process.env.SECRET_KEY = 'OX8b79Ie89Fd6sh5ysg1JR93d8tR5E892j7Yi0';
 
 // Log requests to the console.
 app.use((0, _morgan2.default)('dev'));

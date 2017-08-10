@@ -9,8 +9,6 @@ exports.getUserBooks = getUserBooks;
 exports.modifyBook = modifyBook;
 exports.borrowBook = borrowBook;
 exports.returnBook = returnBook;
-exports.createNotif = createNotif;
-exports.getUserNotifs = getUserNotifs;
 
 var _models = require('../models');
 
@@ -18,11 +16,8 @@ var _models2 = _interopRequireDefault(_models);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var User = _models2.default.User,
-    Book = _models2.default.Book,
-    BorrowDetail = _models2.default.BorrowDetail,
-    Notification = _models2.default.Notification,
-    Sequelize = _models2.default.Sequelize;
+var Book = _models2.default.Book,
+    BorrowDetail = _models2.default.BorrowDetail;
 
 /**
  * Return an array of all books in the database
@@ -46,37 +41,70 @@ function getBooks(req, res) {
  * @return{json} added book
  */
 function addBook(req, res) {
-  return Book.create({
-    title: req.body.title,
-    isbn: req.body.isbn,
-    year: req.body.year,
-    author: req.body.author,
-    description: req.body.description,
-    count: req.body.count
+  return Book.findOne({
+    where: {
+      title: req.body.title,
+      isbn: req.body.isbn
+    }
   }).then(function (book) {
-    return res.status(200).send(book);
+    // Update book if book exists
+    if (book) {
+      book.update({
+        count: book.count + 1
+      });
+      res.status(200).send('Book updated!');
+    } else {
+      // Otherwise create a new book 
+      Book.create({
+        title: req.body.title,
+        isbn: req.body.isbn,
+        year: req.body.year,
+        author: req.body.author,
+        description: req.body.description,
+        count: req.body.count
+      }).then(function (newBook) {
+        return res.status(200).send(newBook);
+      });
+    }
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });
 }
 
 /**
- * Get the list of a user's borrowed but unreturned books
+ * Get the list of a user's borrowed books
+ * And depending on the query passed, it may show returned books only
  * @param{Object} req - api request
  * @param{Object} res - route response
  * @return{json} user borrowed books
  */
 function getUserBooks(req, res) {
-  return BorrowDetail.findAll({
-    where: {
-      userid: req.params.userId,
-      returndate: null
-    }
-  }).then(function (books) {
-    return res.status(200).send(books);
-  }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
-  });
+  if (req.query.returned === 'false') {
+    return BorrowDetail.findAll({
+      where: {
+        userid: req.params.userId,
+        returndate: null
+      }
+    }).then(function (books) {
+      return res.status(200).send(books);
+    }).catch(function (err) {
+      return res.status(400).send(err.errors[0].message + '!');
+    });
+  } else if (req.query.returned === 'false') {
+    return BorrowDetail.findAll({
+      where: {
+        userid: req.params.userId,
+        $ne: {
+          returndate: null
+        }
+      }
+    }).then(function (books) {
+      return res.status(200).send(books);
+    }).catch(function (err) {
+      return res.status(400).send(err.errors[0].message + '!');
+    });
+  }
+  return res.status(403).send('Query missing or wrong: use /path?returned=true');
 }
 
 /**
@@ -111,6 +139,17 @@ function modifyBook(req, res) {
  * @return{json} borrowdetail
  */
 function borrowBook(req, res) {
+  Book.findOne({
+    where: {
+      title: req.body.booktitle
+    }
+  }).then(function (book) {
+    if (book) {
+      book.update({
+        count: book.count - 1
+      });
+    }
+  });
   return BorrowDetail.create({
     booktitle: req.body.booktitle,
     borrowdate: Date.now(),
@@ -129,6 +168,17 @@ function borrowBook(req, res) {
  * @return{string} borrow status 
  */
 function returnBook(req, res) {
+  Book.findOne({
+    where: {
+      title: req.body.booktitle
+    }
+  }).then(function (book) {
+    if (book) {
+      book.update({
+        count: book.count + 1
+      });
+    }
+  });
   return BorrowDetail.update({
     returndate: Date.now(),
     userid: req.params.userId
@@ -137,34 +187,7 @@ function returnBook(req, res) {
       userid: req.params.userId
     }
   }).then(function (borrowdetail) {
-    return res.status(200).send(borrowdetail[0] === 2 ? 'Book returned successfully!' : 'Book not returned!');
-  }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
-  });
-}
-
-// For test purpose only
-function createNotif(req, res) {
-  return Notification.create({
-    sender: req.body.sender,
-    reciever: req.body.reciever,
-    message: req.body.message,
-    sentdate: Date.now(),
-    userid: req.body.userid
-  }).then(function (notif) {
-    return res.status(200).send(notif);
-  }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
-  });
-}
-
-// For test purpose only
-function getUserNotifs(req, res) {
-  var idParam = req.params.userId;
-  return Notification.findAll({
-    where: { userid: idParam }
-  }).then(function (notifs) {
-    return res.status(200).send(notifs);
+    return res.status(200).send(borrowdetail[0] > 0 ? 'Book returned successfully!' : 'Book not returned!');
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });
