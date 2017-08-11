@@ -35,7 +35,7 @@ export function checkUserExists(req, res, next) {
   User
     .findOne({
       where: {
-        username: req.params.username,
+        username: req.body.username,
       },
     })
     .then((user) => {

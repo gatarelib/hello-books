@@ -51,7 +51,7 @@ function checkBookExists(req, res, next) {
 function checkUserExists(req, res, next) {
   User.findOne({
     where: {
-      username: req.params.username
+      username: req.body.username
     }
   }).then(function (user) {
     if (!user) {
