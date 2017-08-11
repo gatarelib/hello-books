@@ -39,7 +39,7 @@ export function verifyAdminStatus(req, res, next) {
     jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
       // Check id session is of admin
       if (decoded.isadmin !== true) {
-        res.status(401).send('Unauthorized access!');
+        res.status(403).send('Forbidden access!');
       } else next();
     });
   }

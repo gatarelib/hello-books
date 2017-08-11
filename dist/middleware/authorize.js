@@ -51,7 +51,7 @@ function verifyAdminStatus(req, res, next) {
     _jsonwebtoken2.default.verify(token, process.env.SECRET_KEY, function (err, decoded) {
       // Check id session is of admin
       if (decoded.isadmin !== true) {
-        res.status(401).send('Unauthorized access!');
+        res.status(403).send('Forbidden access!');
       } else next();
     });
   }

@@ -10,12 +10,17 @@ var _chaiHttp2 = _interopRequireDefault(_chaiHttp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var expect = _chai2.default.expect();
+var should = _chai2.default.should();
+var server = require('../server.js');
 
 _chai2.default.use(_chaiHttp2.default);
 
-describe('API Test: ', function () {
+describe('API Route Test: ', function () {
   it('Test if true ', function () {
-    expect('Hello').to.equal('Hello');
+    _chai2.default.request(server).get('/api/v1/books').end(function (err, res) {
+      res.should.have.status(200);
+      res.body.should.be.a('array');
+      done();
+    });
   });
 });
