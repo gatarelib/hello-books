@@ -116,23 +116,47 @@ export function getUserBooks(req, res) {
  */
 export function modifyBook(req, res) {
   return Book
-    .update({
-      title: req.body.title || Book.title,
-      isbn: req.body.isbn || Book.isbn,
-      year: req.body.year || Book.year,
-      author: req.body.author || Book.author,
-      description: req.body.description || Book.description,
-      count: req.body.count || Book.count,
-    },
-    {
+    .findOne({
       where: {
         id: req.params.bookId,
       },
     })
-    .then(book => res.status(202).send(book[0] === 1 ? { message: 'Book update successful!' } : { message: 'Book update not successful!' }))
+    .then((book) => {
+      book.update({
+        title: req.body.title || book.title,
+        isbn: req.body.isbn || book.isbn,
+        year: req.body.year || book.year,
+        author: req.body.author || book.author,
+        description: req.body.description || book.description,
+        count: req.body.count || book.count,
+      });
+      res.status(202).send({ 
+        message: 'Book update successful!', 
+        book,
+      });
+    })
     .catch(err => res.status(400).send(
       { message: `${err.errors[0].message}!` },
     ));
+
+  // return Book
+  //   .update({
+  //     title: req.body.title || Book.title,
+  //     isbn: req.body.isbn || Book.isbn,
+  //     year: req.body.year || Book.year,
+  //     author: req.body.author || Book.author,
+  //     description: req.body.description || Book.description,
+  //     count: req.body.count || Book.count,
+  //   },
+  //   {
+  //     where: {
+  //       id: req.params.bookId,
+  //     },
+  //   })
+  //   .then(book => res.status(202).send(book[0] === 1 ? { message: 'Book update successful!' } : { message: 'Book update not successful!' }))
+  //   .catch(err => res.status(400).send(
+  //     { message: `${err.errors[0].message}!` },
+  //   ));
 }
 
 /**
