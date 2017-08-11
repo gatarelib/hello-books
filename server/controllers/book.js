@@ -130,8 +130,8 @@ export function modifyBook(req, res) {
         description: req.body.description || book.description,
         count: req.body.count || book.count,
       });
-      res.status(202).send({ 
-        message: 'Book update successful!', 
+      res.status(202).send({
+        message: 'Book update successful!',
         book,
       });
     })
