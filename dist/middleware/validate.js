@@ -7,6 +7,7 @@ exports.checkBookExists = checkBookExists;
 exports.checkUserExists = checkUserExists;
 exports.checkUserNameExists = checkUserNameExists;
 exports.checkUserBorrowedBook = checkUserBorrowedBook;
+exports.checkBookCount = checkBookCount;
 exports.checkUserReturnedBook = checkUserReturnedBook;
 
 var _models = require('../models');
@@ -88,11 +89,34 @@ function checkUserNameExists(req, res, next) {
 function checkUserBorrowedBook(req, res, next) {
   BorrowDetail.findOne({
     where: {
-      id: req.params.userId
+      booktitle: req.body.booktitle,
+      userid: req.params.userId
     }
   }).then(function (borrowdetail) {
-    if (!borrowdetail && borrowdetail.returndate !== null) {
-      res.status(400).send('Book already borrowed!');
+    if (borrowdetail) {
+      res.status(409).send('User already borrowed book!');
+    } else next();
+  });
+}
+
+/**
+ * Check if a book count is above 0
+ * @param{Object} req - api request
+ * @param{Object} res - route response
+ * @param{Object} next - jumping to next handler
+ * @return{undefined}
+ */
+function checkBookCount(req, res, next) {
+  Book.findOne({
+    where: {
+      title: req.body.booktitle,
+      count: {
+        $gt: 0
+      }
+    }
+  }).then(function (book) {
+    if (!book) {
+      res.status(400).send('Out of requested book!');
     } else next();
   });
 }
