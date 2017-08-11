@@ -45,7 +45,7 @@ function verifyUserSession(req, res, next) {
 function verifyAdminStatus(req, res, next) {
   var token = req.body.token || req.headers.token;
   if (!token) {
-    res.status(403).send('Session token is required!');
+    res.status(401).send('Session token is required!');
   } else {
     // Check if token matches the one provided at login
     _jsonwebtoken2.default.verify(token, process.env.SECRET_KEY, function (err, decoded) {

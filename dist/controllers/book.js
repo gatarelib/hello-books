@@ -52,7 +52,7 @@ function addBook(req, res) {
       book.update({
         count: book.count + 1
       });
-      res.status(200).send('Book updated!');
+      res.status(201).send({ message: 'Book created!' });
     } else {
       // Otherwise create a new book 
       Book.create({
@@ -104,7 +104,7 @@ function getUserBooks(req, res) {
       return res.status(400).send(err.errors[0].message + '!');
     });
   }
-  return res.status(403).send('Query missing or wrong: use /path?returned=true');
+  return res.status(400).send({ message: 'Query missing or wrong: use /path?returned=true' });
 }
 
 /**
@@ -126,7 +126,7 @@ function modifyBook(req, res) {
       id: req.params.bookId
     }
   }).then(function (book) {
-    return res.status(200).send(book[0] === 1 ? 'Book update successful!' : 'Book update not successful!');
+    return res.status(202).send(book[0] === 1 ? { message: 'Book update successful!' } : { message: 'Book update not successful!' });
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });
@@ -187,7 +187,7 @@ function returnBook(req, res) {
       userid: req.params.userId
     }
   }).then(function (borrowdetail) {
-    return res.status(200).send(borrowdetail[0] > 0 ? 'Book returned successfully!' : 'Book not returned!');
+    return res.status(200).send(borrowdetail[0] > 0 ? { message: 'Book returned successfully!' } : { message: 'Book not returned!' });
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });

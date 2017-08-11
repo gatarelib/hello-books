@@ -45,9 +45,12 @@ export function loginUser(req, res) {
       const token = jwt.sign({ username: user.username, isadmin: user.isadmin }, process.env.SECRET_KEY, { expiresIn: '10m' });
       bcrypt.compare(req.body.password, user.password).then((check) => {
         if (check) {
-          res.status(200).send(`Successfully Logged in! \nLogin token: ${token}`);
+          res.status(200).send({
+            message: 'Successfully Logged in!',
+            token,
+          });
         }
-        res.status(401).send('Wrong password or username!');
+        res.status(401).send({ message: 'Wrong password or username!' });
       });
     })
     .catch(err => res.status(400).send(

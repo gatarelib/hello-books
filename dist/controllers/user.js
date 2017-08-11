@@ -60,9 +60,12 @@ function loginUser(req, res) {
     var token = _jsonwebtoken2.default.sign({ username: user.username, isadmin: user.isadmin }, process.env.SECRET_KEY, { expiresIn: '10m' });
     _bcrypt2.default.compare(req.body.password, user.password).then(function (check) {
       if (check) {
-        res.status(200).send('Successfully Logged in! \nLogin token: ' + token);
+        res.status(200).send({
+          message: 'Successfully Logged in!',
+          token: token
+        });
       }
-      res.status(401).send('Wrong password or username!');
+      res.status(401).send({ message: 'Wrong password or username!' });
     });
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');

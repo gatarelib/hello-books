@@ -84,7 +84,7 @@ export function checkUserBorrowedBook(req, res, next) {
     })
     .then((borrowdetail) => {
       if (borrowdetail) {
-        res.status(400).send('User already borrowed book!');
+        res.status(409).send('User already borrowed book!');
       } else next();
     });
 }

@@ -38,7 +38,7 @@ export function addBook(req, res) {
         book.update({
           count: book.count + 1,
         });
-        res.status(200).send('Book updated!');
+        res.status(201).send({ message: 'Book created!' });
       } else {
         // Otherwise create a new book 
         Book
@@ -99,7 +99,7 @@ export function getUserBooks(req, res) {
         `${err.errors[0].message}!`,
       ));
   }
-  return res.status(403).send('Query missing or wrong: use /path?returned=true');
+  return res.status(400).send({ message: 'Query missing or wrong: use /path?returned=true' });
 }
 
 /**
@@ -123,7 +123,7 @@ export function modifyBook(req, res) {
         id: req.params.bookId,
       },
     })
-    .then(book => res.status(200).send(book[0] === 1 ? 'Book update successful!' : 'Book update not successful!'))
+    .then(book => res.status(202).send(book[0] === 1 ? { message: 'Book update successful!' } : { message: 'Book update not successful!' }))
     .catch(err => res.status(400).send(
       `${err.errors[0].message}!`,
     ));
@@ -191,7 +191,7 @@ export function returnBook(req, res) {
         userid: req.params.userId,
       },
     })
-    .then(borrowdetail => res.status(200).send(borrowdetail[0] > 0 ? 'Book returned successfully!' : 'Book not returned!'))
+    .then(borrowdetail => res.status(200).send(borrowdetail[0] > 0 ? { message: 'Book returned successfully!' } : { message: 'Book not returned!' }))
     .catch(err => res.status(400).send(
       `${err.errors[0].message}!`,
     ));
