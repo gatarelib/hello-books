@@ -15,7 +15,7 @@ export function getBooks(req, res) {
       books,
     ))
     .catch(err => res.status(404).send(
-      `${err.errors[0].message}!`,
+      { message: `${err.errors[0].message}!` },
     ));
 }
 
@@ -62,7 +62,7 @@ export function addBook(req, res) {
       }
     })
     .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
+      { message: `${err.errors[0].message}!` },
     ));
 }
 
@@ -86,7 +86,7 @@ export function getUserBooks(req, res) {
         books,
       ))
       .catch(err => res.status(400).send(
-        `${err.errors[0].message}!`,
+        { message: `${err.errors[0].message}!` },
       ));
   } else if (req.query.returned === 'false') {
     return BorrowDetail
@@ -102,7 +102,7 @@ export function getUserBooks(req, res) {
         books,
       ))
       .catch(err => res.status(400).send(
-        `${err.errors[0].message}!`,
+        { message: `${err.errors[0].message}!` },
       ));
   }
   return res.status(400).send({ message: 'Query missing or wrong: use /path?returned=true' });
@@ -131,7 +131,7 @@ export function modifyBook(req, res) {
     })
     .then(book => res.status(202).send(book[0] === 1 ? { message: 'Book update successful!' } : { message: 'Book update not successful!' }))
     .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
+      { message: `${err.errors[0].message}!` },
     ));
 }
 
@@ -167,7 +167,7 @@ export function borrowBook(req, res) {
       },
     ))
     .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
+      { message: `${err.errors[0].message}!` },
     ));
 }
 
@@ -202,7 +202,7 @@ export function returnBook(req, res) {
     })
     .then(borrowdetail => res.status(200).send(borrowdetail[0] > 0 ? { message: 'Book returned successfully!' } : { message: 'Book not returned!' }))
     .catch(err => res.status(400).send(
-      `${err.errors[0].message}!`,
+      { message: `${err.errors[0].message}!` },
     ));
 }
 

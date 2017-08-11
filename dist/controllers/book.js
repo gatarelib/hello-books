@@ -30,7 +30,7 @@ function getBooks(req, res) {
   return Book.all().then(function (books) {
     return res.status(200).send(books);
   }).catch(function (err) {
-    return res.status(404).send(err.errors[0].message + '!');
+    return res.status(404).send({ message: err.errors[0].message + '!' });
   });
 }
 
@@ -73,7 +73,7 @@ function addBook(req, res) {
       });
     }
   }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
+    return res.status(400).send({ message: err.errors[0].message + '!' });
   });
 }
 
@@ -94,7 +94,7 @@ function getUserBooks(req, res) {
     }).then(function (books) {
       return res.status(200).send(books);
     }).catch(function (err) {
-      return res.status(400).send(err.errors[0].message + '!');
+      return res.status(400).send({ message: err.errors[0].message + '!' });
     });
   } else if (req.query.returned === 'false') {
     return BorrowDetail.findAll({
@@ -107,7 +107,7 @@ function getUserBooks(req, res) {
     }).then(function (books) {
       return res.status(200).send(books);
     }).catch(function (err) {
-      return res.status(400).send(err.errors[0].message + '!');
+      return res.status(400).send({ message: err.errors[0].message + '!' });
     });
   }
   return res.status(400).send({ message: 'Query missing or wrong: use /path?returned=true' });
@@ -134,7 +134,7 @@ function modifyBook(req, res) {
   }).then(function (book) {
     return res.status(202).send(book[0] === 1 ? { message: 'Book update successful!' } : { message: 'Book update not successful!' });
   }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
+    return res.status(400).send({ message: err.errors[0].message + '!' });
   });
 }
 
@@ -166,7 +166,7 @@ function borrowBook(req, res) {
       borrowdetail: borrowdetail
     });
   }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
+    return res.status(400).send({ message: err.errors[0].message + '!' });
   });
 }
 
@@ -198,6 +198,6 @@ function returnBook(req, res) {
   }).then(function (borrowdetail) {
     return res.status(200).send(borrowdetail[0] > 0 ? { message: 'Book returned successfully!' } : { message: 'Book not returned!' });
   }).catch(function (err) {
-    return res.status(400).send(err.errors[0].message + '!');
+    return res.status(400).send({ message: err.errors[0].message + '!' });
   });
 }
