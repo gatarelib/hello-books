@@ -161,7 +161,10 @@ export function borrowBook(req, res) {
       userid: req.params.userId,
     })
     .then(borrowdetail => res.status(200).send(
-      borrowdetail,
+      {
+        message: 'Book borrowed successfully',
+        borrowdetail,
+      },
     ))
     .catch(err => res.status(400).send(
       `${err.errors[0].message}!`,

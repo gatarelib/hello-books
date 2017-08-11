@@ -161,7 +161,10 @@ function borrowBook(req, res) {
     borrowdate: Date.now(),
     userid: req.params.userId
   }).then(function (borrowdetail) {
-    return res.status(200).send(borrowdetail);
+    return res.status(200).send({
+      message: 'Book borrowed successfully',
+      borrowdetail: borrowdetail
+    });
   }).catch(function (err) {
     return res.status(400).send(err.errors[0].message + '!');
   });
