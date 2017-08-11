@@ -18,7 +18,7 @@ export function checkBookExists(req, res, next) {
     })
     .then((book) => {
       if (!book) {
-        res.status(404).send("Can't find book!");
+        res.status(404).send({ message: "Can't find book!" });
       }
       next();
     });
@@ -40,7 +40,7 @@ export function checkUserExists(req, res, next) {
     })
     .then((user) => {
       if (!user) {
-        res.status(404).send('User does not exist!');
+        res.status(404).send({ message: 'User does not exist!' });
       } else next();
     });
 }
