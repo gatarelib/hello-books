@@ -52,7 +52,10 @@ function addBook(req, res) {
       book.update({
         count: book.count + 1
       });
-      res.status(201).send({ message: 'Book created!' });
+      res.status(201).send({
+        message: 'Book added to existing library!',
+        book: book
+      });
     } else {
       // Otherwise create a new book 
       Book.create({
@@ -63,7 +66,10 @@ function addBook(req, res) {
         description: req.body.description,
         count: req.body.count
       }).then(function (newBook) {
-        return res.status(200).send(newBook);
+        return res.status(200).send({
+          message: 'Added book successfully',
+          book: newBook
+        });
       });
     }
   }).catch(function (err) {

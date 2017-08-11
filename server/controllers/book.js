@@ -38,7 +38,10 @@ export function addBook(req, res) {
         book.update({
           count: book.count + 1,
         });
-        res.status(201).send({ message: 'Book created!' });
+        res.status(201).send({ 
+          message: 'Book added to existing library!',
+          book,
+        });
       } else {
         // Otherwise create a new book 
         Book
@@ -51,7 +54,10 @@ export function addBook(req, res) {
             count: req.body.count,
           })
           .then(newBook => res.status(200).send(
-            newBook,
+            {
+              message: 'Added book successfully', 
+              book: newBook,
+            },
           ));
       }
     })
