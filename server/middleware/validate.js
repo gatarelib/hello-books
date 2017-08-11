@@ -35,12 +35,12 @@ export function checkUserExists(req, res, next) {
   User
     .findOne({
       where: {
-        username: req.body.username,
+        id: req.params.userId,
       },
     })
     .then((user) => {
       if (!user) {
-        res.status(404).send({ message: 'User does not exist!' });
+        res.status(404).send('User does not exist!');
       } else next();
     });
 }
