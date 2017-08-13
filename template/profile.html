@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="utf-8" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <title>Hello Books - Profile</title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/material-kit.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+
+<body class="index-page">
+    <!-- NAV BAR -->
+    <nav class="navbar navbar-fixed-top navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#simple-navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                <a class="navbar-brand" href="#"><strong>Appcypher</strong></a>
+            </div>
+
+            <div class="navbar-collapse collapse" id="simple-navbar" aria-expanded="false" style="height: 0px;">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="discover.html">
+                                <i class="material-icons">explore</i>
+                                Discover
+                            </a>
+                    </li>
+                    <li class="active">
+                        <a href="profile.html">
+                                <i class="material-icons">account_circle</i>
+                                Profile
+                            </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="material-icons">notifications</i>
+                            <span class="notification">3</span>
+                            <span class="hidden-lg hidden-md hidden-sm">Notifications</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">You've been surcharged <strong>₦50</strong> for late return</a></li>
+                            <li><a href="#">Mike recommended a book <strong>Eze goes to school</strong></a></li>
+                            <li><a href="#"><strong>Joys of Motherhood</strong> needs to be returned tomorrow</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#settingsModal">
+                            <i class="material-icons">settings</i>
+                            <span class="hidden-lg hidden-md hidden-sm">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="col-md-12">
+        <div class="card" style="padding-top: 100px">
+            <!-- PLACEHOLDER -->
+            <div class="col-md-1"></div>
+            <!-- NOTIFICATION FEED -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" data-background-color="purple">
+                        <h4 class="title">Notification Feeds</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="alert alert-info">
+                                <span><strong>Tayo Smith</strong> recommended <em>The Gods Are Not To Blame</em></span>
+                            </div>
+                            <div class="alert alert-info">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <span><em>Joys of Motherhood</em> has been successfully returned</span>
+                            </div>
+                            <div class="alert alert-danger alert-with-icon" data-notify="container">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <i data-notify="icon" class="material-icons">add_alert</i>
+                                <!--<img src="img/johnny_afro.png" class="img-thumbnail" width=50 height=50> </img>-->
+                                <span data-notify="message">You've been surcharged <strong>₦50</strong> for late return</span>
+                            </div>
+                            <div class="alert alert-warning alert-with-icon" data-notify="container">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <i data-notify="icon" class="material-icons">add_alert</i>
+                                <!--<img src="img/johnny_afro.png" class="img-thumbnail" width=50 height=50> </img>-->
+                                <span data-notify="message"><strong>ReadingAngel</strong> returned <em>Half of a Yellow Sun</em></span>
+                            </div>
+                            <div class="alert alert-info alert-with-icon" data-notify="container">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <i data-notify="icon" class="material-icons">add_alert</i>
+                                <span data-notify="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+                            </div>
+                            <div class="alert alert-info alert-with-icon" data-notify="container">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <i data-notify="icon" class="material-icons">add_alert</i>
+                                <span data-notify="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+                            </div>
+                            <div class="alert alert-info alert-with-icon" data-notify="container">
+                                <button type="button" aria-hidden="true" class="close">×</button>
+                                <i data-notify="icon" class="material-icons">add_alert</i>
+                                <span data-notify="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PROFILE CARD -->
+            <header class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="#pablo">
+                            <img class="img" src="img/johnny_afro.png">
+                        </a>
+                    </div>
+
+                    <div class="content">
+                        <h4 class="category text-gray">Computer Programmer</h4>
+                        <a href="" data-toggle="modal" data-target="#upgradeModal">
+                            <i class="material-icons">verified_user</i>
+                        </a>
+                        <span class="card-title">Steve Akinyemi</span>
+                        <p class="card-content">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#borrowModal">
+	                      Borrow History
+	                    <div class="ripple-container"></div></button>
+                    </div>
+                </div>
+            </header>
+            
+        </div>
+    </div>
+    <!-- BORROW HISTORY MODAL -->
+    <div class="modal fade" id="borrowModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- HISTORY CONTENT -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header" data-background-color="purple">
+                            <h4 class="title">Simple Table</h4>
+                            <p class="category">Here is a subtitle for this table</p>
+                        </div>
+                        <div class="card-content table-responsive">
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr><th>Title</th>
+                                    <th>ISBN</th>
+                                    <th>Author</th>
+                                    <th>Returned</th>
+                                </tr></thead>
+                                <tbody>
+                                    <tr>
+                                        <td>The Gods Are Not to Blame</td>
+                                        <td>0-4646-57827</td>
+                                        <td>Ola Rotimi</td>
+                                        <td class="text-primary"><i class="fa fa-times text-success"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Pride and Prejudice</td>
+                                        <td>0-4566-59827</td>
+                                        <td>Jane Austen</td>
+                                        <td class="text-primary"><i class="fa fa-times text-danger"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>The Catcher in the Rye</td>
+                                        <td>0-9906-67976</td>
+                                        <td>J. D. Salinger</td>
+                                        <td class="text-primary"><i class="fa fa-times text-success"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brave New World</td>
+                                        <td>0-6766-75756</td>
+                                        <td>Aldous Huxley</td>
+                                        <td class="text-primary"><i class="fa fa-times text-danger"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angels & Demons</td>
+                                        <td>0-3324-43203</td>
+                                        <td>Dan Brown</td>
+                                        <td class="text-primary"><i class="fa fa-times text-success"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Life of Pi</td>
+                                        <td>0-5644-24243</td>
+                                        <td>Yann Martel</td>
+                                        <td class="text-primary"><i class="fa fa-times text-success"></i></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- SETTINGS MODAL -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- SETTINGS CONTENT -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header" data-background-color="purple">
+                            <h4 class="title">Edit Profile</h4>
+                            <p class="category">Complete your profile</p>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Company</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Username</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Email address</label>
+                                            <input type="email" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Fist Name</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Last Name</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Adress</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">City</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Country</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating is-empty">
+                                            <label class="control-label">Postal Code</label>
+                                            <input type="text" class="form-control">
+                                        <span class="material-input"></span></div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>About Me</label>
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label"> Something interesting about me </label>
+                                                <textarea class="form-control" rows="5"></textarea>
+                                            <span class="material-input"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- UPGRADE MODAL -->
+    <div class="modal fade" id="upgradeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- UPGRADE CONTENT -->
+                <div class="col-md-12 ">
+                    <div class="card">
+                        <div class="card-header text-center" data-background-color="purple">
+                            <h4 class="title">Plans</h4>
+                            <p class="category">No obligations. Change plans anytime. Get more books!</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-responsive table-upgrade">
+                                <table class="table">
+                                    <thead>
+                                        <tr><th></th>
+                                        <th class="text-center"><strong>Basic</strong></th>
+                                        <th class="text-center"><strong>Plus</strong></th>
+                                        <th class="text-center"><strong>Premier</strong></th>
+                                    </tr></thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Books allowed to borrow</td>
+                                            <td class="text-center">5</td>
+                                            <td class="text-center">50</td>
+                                            <td class="text-center">Unlimited</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Borrow duration</td>
+                                            <td class="text-center">10 days</td>
+                                            <td class="text-center">15 days</td>
+                                            <td class="text-center">30 days</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Books in watchlist</td>
+                                            <td class="text-center">5</td>
+                                            <td class="text-center">10</td>
+                                            <td class="text-center">Unlimited</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Notifications when new books arrive</td>
+                                            <td class="text-center"><i class="fa fa-times text-danger"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Access to rare books</td>
+                                            <td class="text-center"><i class="fa fa-times text-danger"></i></td>
+                                            <td class="text-center"><i class="fa fa-times text-danger"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ask a librarian</td>
+                                            <td class="text-center"><i class="fa fa-times text-danger"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Premium Support</td>
+                                            <td class="text-center"><i class="fa fa-times text-danger"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                            <td class="text-center"><i class="fa fa-check text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td class="text-center"><strong>Free</strong></td>
+                                            <td class="text-center"><strong>₦4900</strong></td>
+                                            <td class="text-center"><strong>₦9900</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center"></td>
+                                            <td class="text-center">
+                                                <a href="#" class="btn btn-round btn-fill btn-default disabled">Current</a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a target="_blank" href="#" class="btn btn-round btn-fill btn-info">Upgrade</a>
+                                            </td>
+                                            <td class="text-center">
+                                                <a target="_blank" href="#" class="btn btn-round btn-fill btn-info">Upgrade</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- NOTIF MODAL -->
+</body>
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/material.min.js"></script>
+<script src="js/material-kit.js"></script>
+
+</html>
