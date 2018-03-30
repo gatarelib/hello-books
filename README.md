@@ -8,8 +8,6 @@
 
 An elegant material design app that implements a simple digital library for keeping, borrowing and managing all kinds of literature.
 
-HelloBooks is proudly hosted on [heroku](https://steve-hello-world.herokuapp.com/) :smile:.
-
 
 ## Client Side
 HelloBooks is written in EcmaScript-6 JavaScript and designed with Bootstrap and Creative-Tim material library. Icons are sourced from [material.io](material.io/icons)
